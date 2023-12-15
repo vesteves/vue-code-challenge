@@ -8,11 +8,7 @@
     "build": "vue-cli-service build",
     "test": "vue-cli-service test:unit",
     "test:coverage": "vue-cli-service test:unit --coverage",
-    "lint": "vue-cli-service lint",
-    "test:challenge-1": "jest --config=jest.problem-solving.config.js ./problem-solving/challenge-1/index.spec.ts",
-    "test:challenge-2": "jest --config=jest.problem-solving.config.js ./problem-solving/challenge-2/index.spec.ts",
-    "test:challenge-3": "jest --config=jest.problem-solving.config.js ./problem-solving/challenge-3/index.spec.ts",
-    "test:all-challenges": "jest --config=jest.problem-solving.config.js ./problem-solving"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "vue": "^2.6.14",
