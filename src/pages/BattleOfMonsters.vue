@@ -2,6 +2,7 @@
   <div class="main-section">
     <p class="main-title">Battle of Monsters</p>
     <MonstersList :monsters="monsters" />
+    <WinnerDisplay v-if="winner" :message="winner.name" />
     <div class="battle-section">
       <MonsterBattleCard
         :title="selectedMonster ? selectedMonster.name : 'Player'"
@@ -11,10 +12,16 @@
         class="start-battle-button"
         :disabled="!selectedMonsterId"
         :class="[{ inactive: !selectedMonsterId }]"
+        @click="
+          getWinner({
+            monster1Id: selectedMonsterId,
+            monster2Id: computerMonster.id,
+          })
+        "
       >
         Start Battle
       </v-btn>
-      <MonsterBattleCard title="Computer" :monster="[]" />
+      <MonsterBattleCard title="Computer" :monster="computerMonster" />
     </div>
   </div>
 </template>
@@ -33,16 +40,29 @@ export default Vue.extend({
     MonsterBattleCard: defineAsyncComponent(
       () => import("@/components/MonsterBattleCard.vue")
     ),
+    WinnerDisplay: defineAsyncComponent(
+      () => import("@/components/WinnerDisplay.vue")
+    ),
   },
   computed: {
-    ...mapState("monster", ["selectedMonsterId", "selectedMonster"]),
+    ...mapState("monster", ["selectedMonsterId", "selectedMonster", "winner"]),
     ...mapGetters("monster", ["getMonsters"]),
     monsters() {
       return this.getMonsters;
     },
+    computerMonster() {
+      if (!this.selectedMonsterId) {
+        return undefined;
+      }
+
+      const monsterTemp = this.monsters.filter(
+        (monster) => monster.id !== this.selectedMonsterId
+      );
+      return monsterTemp[Math.floor(Math.random() * monsterTemp.length)];
+    },
   },
   methods: {
-    ...mapActions("monster", ["loadMonsters"]),
+    ...mapActions("monster", ["loadMonsters", "getWinner"]),
   },
   created() {
     this.loadMonsters();

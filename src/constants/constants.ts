@@ -5,4 +5,6 @@ export const constants = {
   SELECT_RANDOM_MONSTERS: "setSelectedRandomMonster",
   GET_BATTLE_WINNER: "setBattleWinner",
   RESET_GAME: "setResetGame",
+  GET_WINNER: "getWinner",
+  CLEAR_WINNER: "clearWinner",
 };

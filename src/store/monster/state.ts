@@ -4,4 +4,5 @@ export const state: MonsterState = {
   monsters: [],
   selectedMonsterId: undefined,
   selectedMonster: undefined,
+  winner: undefined,
 };

@@ -13,4 +13,14 @@ export interface MonsterState {
   monsters: Monster[];
   selectedMonsterId: string | undefined;
   selectedMonster: Monster | undefined;
+  winner: Monster | undefined;
+}
+
+export interface MonsterBattlePayload {
+  monster1Id: number;
+  monster2Id: number;
+}
+
+export interface MonsterBattleResponse {
+  winner: Monster;
 }

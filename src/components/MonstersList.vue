@@ -42,9 +42,15 @@ export default Vue.extend({
       selectedMonsterId: null,
     };
   },
+
   methods: {
-    ...mapActions("monster", ["selectedMonsterById", "selectedMonster"]),
+    ...mapActions("monster", [
+      "selectedMonsterById",
+      "selectedMonster",
+      "clearWinner",
+    ]),
     handleMonsterClick(monster: Monster) {
+      this.clearWinner();
       const correctMonster =
         this.selectedMonsterId !== monster.id ? monster : null;
       this.selectedMonsterId = correctMonster?.id ?? null;
